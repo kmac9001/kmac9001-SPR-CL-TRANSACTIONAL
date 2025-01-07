@@ -19,7 +19,8 @@ import java.util.List;
  * attempting to get all ships. No ships should be persisted if any ship in the array has a negative or zero
  * tonnage - we're left to assume some form of unwanted user error in that case.
  */
-@Service
+@Transactional(rollbackFor = InvalidTonnageException.class)
+ @Service
 public class ShipService {
     ShipRepository shipRepository;
     @Autowired
